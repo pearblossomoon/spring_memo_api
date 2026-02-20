@@ -1,0 +1,7 @@
+POST http://localhost:8080/memos
+Content-Type: application/json
+
+{
+  "title": "두번째 메모",
+  "content": "진짜 테스트"
+}
