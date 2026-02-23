@@ -22,4 +22,25 @@ public class MemoService {
     public List<Memo> findAll() {
         return memoRepository.findAll();
     }
+
+    public Memo findById(Long id) {
+        return memoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("해당 메모가 없습니다."));
+    }
+
+    public Memo update(Long id, Memo updatedMemo) {
+        Memo memo = memoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("해당 메모가 없습니다."));
+
+        memo.setTitle(updatedMemo.getTitle());
+        memo.setContent(updatedMemo.getContent());
+
+        return memoRepository.save(memo);
+    }
+
+    public void delete(Long id) {
+        Memo memo = memoRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("해당 메모가 없습니다."));
+        memoRepository.delete(memo);
+    }
 }

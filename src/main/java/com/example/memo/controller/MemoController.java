@@ -21,8 +21,18 @@ public class MemoController {
         return memoService.save(memo);
     }
 
-    @GetMapping
+    @GetMapping(produces = "application/json; charset=UTF-8")
     public List<Memo> getAll() {
         return memoService.findAll();
+    }
+
+    @GetMapping(value = "/{id}", produces = "application/json; charset=UTF-8")
+    public Memo getMemo(@PathVariable Long id) {
+        return memoService.findById(id);
+    }
+
+    @PutMapping("/{id}")
+    public Memo updateMemo(@PathVariable Long id, @RequestBody Memo memo) {
+        return memoService.update(id, memo);
     }
 }
