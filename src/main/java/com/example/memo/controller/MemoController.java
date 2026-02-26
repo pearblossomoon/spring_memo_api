@@ -1,5 +1,7 @@
 package com.example.memo.controller;
 
+import com.example.memo.dto.MemoRequestDto;
+import com.example.memo.dto.MemoResponseDto;
 import com.example.memo.entity.Memo;
 import com.example.memo.service.MemoService;
 import org.springframework.web.bind.annotation.*;
@@ -17,8 +19,8 @@ public class MemoController {
     }
 
     @PostMapping
-    public Memo createMemo(@RequestBody Memo memo) {
-        return memoService.save(memo);
+    public MemoResponseDto create(@RequestBody MemoRequestDto requestDto) {
+        return memoService.create(requestDto);
     }
 
     @GetMapping(produces = "application/json; charset=UTF-8")
